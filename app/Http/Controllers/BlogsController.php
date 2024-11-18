@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\blogs_requests;
+use App\Http\Requests\blogs_update_request;
 use App\Http\Resources\BlogsResource;
+use App\Http\Resources\BlogsUpdateRresource;
 use App\Models\blogs;
 use Illuminate\Http\Request;
 
@@ -30,5 +32,17 @@ class BlogsController extends Controller
     {
         $blogs = blogs::all();
         return BlogsResource::collection($blogs);
+    }
+
+    public function delete_blog(blogs $blogs)
+    {
+        $blogs->delete();
+        return response()->json(['message' => 'blog deleted successfully'], 200);
+    }
+
+    public function update_blog(blogs_update_request $blogs_update_request, blogs $blogs)
+    {
+        $blogs->update($blogs_update_request->all());
+        return response()->json(['message' => 'blog updated successfully', "data"=> new BlogsUpdateRresource($blogs)], 200);
     }
 }
