@@ -18,6 +18,8 @@ Route::get('users/{User:id}/show', [\App\Http\Controllers\UsersController::class
 Route::get('users/list', [\App\Http\Controllers\UsersController::class, 'show_users_list']);
 Route::put('users/{User:id}/update', [\App\Http\Controllers\UsersController::class, 'update_user']);
 Route::delete('users/{User:id}/delete', [\App\Http\Controllers\UsersController::class, 'delete_user']);
+Route::post('users/login', [\App\Http\Controllers\UsersController::class, 'login_user']);
+Route::post('users/check_otp', [\App\Http\Controllers\UsersController::class, 'check_otp']);
 
 Route::post('products/store', [\App\Http\Controllers\ProductsController::class, 'Store_products']);
 Route::get('products/{Product:id}/show', [\App\Http\Controllers\ProductsController::class, 'show_product']);
